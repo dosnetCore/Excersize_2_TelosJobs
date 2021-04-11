@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<style>
+  .btn{
+    	width:50px;
+        height:50px;
+        background-color: #7fb2b1;
+		border: 0;
+        margin: 1px;
+        border-radius: 5px;
+   }
+</style>
+
+<head></head>
+
+<body>
+
+<span>Number of rows & columns: </span><input id="source" value="" style="width: 60px" min="3" type="number" onclick="createBoard()"></input>
+<div id="box"></div>
+
+<script>
+
+var source = document.getElementById('source').value;
+var n = 3;
+var flag = "X";
+
+function createBoard() {
+	var val = document.getElementById('source').value;
+    
+  	var box = document.getElementById('box');
+    
+    document.getElementById("box").innerHTML = " "; //empty outer div(box)
+    
+	for(var j=1; j<=val; j++){
+    
+		var lineDiv = document.createElement('div'); //create div for one line
+		box.appendChild(lineDiv); //append this line to outer div(box)
+		
+		for(var i=1; i<=val; i++){
+
+			var oneBtnInLine = document.createElement('button'); //create one btn in line
+            oneBtnInLine.id = n++;
+            oneBtnInLine.className = "btn";
+  			lineDiv.appendChild(oneBtnInLine); //append btn in the line
+  			oneBtnInLine.innerHTML = "";
+            oneBtnInLine.addEventListener('click', clicked);
+		}
+	}  
+}
+
+var clicked = function(){
+    
+    if (this.innerHTML == "X" || this.innerHTML == "O")
+    {
+    	alert("KAFTOR TAFUS");
+    }
+    else if(this.innerHTML == "")
+    {
+    	this.innerHTML = flag;
+        
+        if(flag == "X"){ flag = "O" }
+        else if(flag == "O") { flag = "X" }   
+    }
+}
+
+</script>
+
+</body>
+</html>
